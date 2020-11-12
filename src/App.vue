@@ -1,42 +1,27 @@
 <template>
   <div id="app">
+    <!-- 头部组件 -->
+    <AppHeader></AppHeader>
     <router-view></router-view>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-const map: Map<string, string> = new Map();
-import orderApi from "./apis/order";
+import AppHeader from './components/Appheader.vue'
 @Component({
   components: {
+    AppHeader
   },
   computed: {
-    a: () => 1,
   },
-  methods: {
-    async test() {
-      const res = await orderApi.getGoodsList({
-        method: "GET",
-        url: "goods/goods_list",
-      });
-      console.log(res);
-    },
-  },
+  methods: {}
 })
 export default class App extends Vue {
-  constructor() {
-    super();
-    this.map.set("1", "1");
-    this.map.set("2", "2");
-  }
-  myText = "abc";
-  map = map;
-  created() {
-    console.log("abc");
-  }
 }
 </script>
 
-<style>
+<style lang="less" scoped>
+
+
 </style>

@@ -6,20 +6,30 @@ Vue.use(vueRouter)
 const routes = [
   {
     path: '/',
-    redirect: { name: 'goods'}
+    redirect: { name: 'dashboard'}
   },
   {
-    path: '/goods',
-    name: 'goods',
-    component: () => import(/* chunkName:goods */ '../views/goods/Index.vue')
-  },
-  {
-    path: '/merchant',
-    component: () => import(/* chunkName:goods */ '../views/commits/Index.vue')
-  },
-  {
-    path: '/commits',
-    component: () => import(/* chunkName:goods */ '../views/commits/Index.vue')
+    path: '/dashboard',
+    name: 'dashboard',
+    redirect: '/dashboard/goods',
+    component: () => import(/* chunkName:goods */ '../views/dashboard/Index.vue'),
+    children: [
+      {
+        path: '/dashboard/goods',
+        name: 'goods',
+        component: () => import(/* webpackChunkName:goods */ '../views/goods/Index.vue')
+      },
+      {
+        path: '/dashboard/merchant',
+        name: 'merchant',
+        component: () => import(/* webpackChunkName:goods */ '../views/merchant/Index.vue')
+      },
+      {
+        path: '/dashboard/commits',
+        name: 'commits',
+        component: () => import(/* webpackChunkName:goods */ '../views/commits/Index.vue')
+      }
+    ]
   }
 ]
 
